@@ -1,30 +1,37 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
+// here we use the useNavigation to get acess to other screen because this component is not a screen itself but is used in the login and signup screens
 import FlatButton from "../ui/FlatButton";
 import AuthForm from "./AuthForm";
 import { Colors } from "../../constant/styles";
 
+// in here we get 2 props, isLogin and onAuthenticate(which is a function that will be called when the user submits the form(authenticate)) from the LoginScreen and SignupScreen components, this component is used in both of those screens so we can use it to handle both login and signup functionality
 function AuthContent({ isLogin, onAuthenticate }) {
+  const navigation = useNavigation(); // this give us a method to navigate to other screens
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,
     confirmEmail: false,
     confirmPassword: false,
   });
-
+  // the isLogin prop here is a boolean that determines if the user is logging in or signing up and it has only been placed in the auth content where it comes from and on the login screen but not on the signup screen
   function switchAuthModeHandler() {
-    // Todo
+    if (isLogin) {
+      navigation.replace("Signup"); // this will navigate to the signup screen and in order for the back button to not show so the user cannot go back to the login screen rather they use the flat button to switch to the login screen, we use replace instead of navigate.
+    } else {
+      navigation.replace("Login"); // this will navigate to the login screen
+    }
   }
 
   function submitHandler(credentials) {
     let { email, confirmEmail, password, confirmPassword } = credentials;
 
-    email = email.trim();
+    email = email.trim(); // this is used to remove any leading or trailing spaces from the email and password
     password = password.trim();
 
-    const emailIsValid = email.includes("@");
-    const passwordIsValid = password.length > 6;
+    const emailIsValid = email.includes("@"); // this is a simple validation for the email, you can use more complex validation if you want but FB allows an email to be valid if it contains an @ symbol so we will use that as a validation here
+    const passwordIsValid = password.length > 6; // this is a simple validation for the email and password, you can use more complex validation if you want but FB allows a limit of 6 characters for the password so we will use that as a validation here
     const emailsAreEqual = email === confirmEmail;
     const passwordsAreEqual = password === confirmPassword;
 
@@ -42,7 +49,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
       });
       return;
     }
-    onAuthenticate({ email, password });
+    onAuthenticate({ email, password }); // once a user details are authenticate, this will call the onAuthenticate function that is passed from the LoginScreen or SignupScreen component, which will handle the authentication logic (like calling the createUser function or login function)
   }
 
   return (
