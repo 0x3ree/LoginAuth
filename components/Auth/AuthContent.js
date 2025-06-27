@@ -3,7 +3,7 @@ import { Alert, StyleSheet, View } from "react-native";
 
 import FlatButton from "../ui/FlatButton";
 import AuthForm from "./AuthForm";
-import { Colors } from "../../constants/styles";
+import { Colors } from "../../constant/styles";
 
 function AuthContent({ isLogin, onAuthenticate }) {
   const [credentialsInvalid, setCredentialsInvalid] = useState({
