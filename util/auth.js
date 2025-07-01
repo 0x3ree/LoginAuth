@@ -14,15 +14,26 @@ async function authenticate(mode, email, password) {
       returnSecureToken: true, // this is used to return a secure token for the user
     } // this is the endpoint for creating a new user in Firebase Authentication (this(email,pass, RST) should always be in an object format which will be sent as the body of the request which will be converted to JSON(a data format) by axios));
   );
-  console.log(response.data);
+  const token = response.data.idToken; // this is the token that will be used to authenticate the user, it's gotten from the Firebase Authentication service when the user is created or logged in
+  return token; // this will return the token to the caller of the function, which can be used to authenticate the user in the app
 }
 
 // This is the API key for Firebase Authentication, which is used to authenticate requests to the Firebase Authentication service.
 // when we trigger the createUser fucntion, it will send a post request to FB automatically a promise comes in and we make our post request an async fucntion and extracts its response using await and then we can use the response to do whatever we want with it, like storing the user in the database or logging them in.
-export async function createUser(email, password) {
-  await authenticate("signUp", email, password); // this will call the authenticate function with the signUp mode and the email and password provided by the user
+export function createUser(email, password) {
+  return authenticate("signUp", email, password); // this will call the authenticate function with the signUp mode and the email and password provided by the user
 }
 
-export async function login(email, password) {
-  await authenticate("signInWithPassword", email, password); // this will call the authenticate function with the signInWithPassword mode and the email and password provided by the user
+export function login(email, password) {
+  return authenticate("signInWithPassword", email, password); // this will call the authenticate function with the signInWithPassword mode and the email and password provided by the user
 }
+
+/* nomral this is how we'd pass the token from our response to the auth context provider so that we can use it in our app,
+  but we used a much simpler method by just returning authenticate which carries the token in it.
+
+ 
+  export async function createUser(email, password) {
+  const token = await authenticate("signUp", email, password);
+  return token;
+}
+  */
