@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 // here we use the useNavigation to get acess to other screen because this component is not a screen itself but is used in the login and signup screens
