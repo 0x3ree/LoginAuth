@@ -1,8 +1,8 @@
 // Note: in here we are storing the state management for what happens when a user is log's intothe app moving from the login screen to the signUp screen and vice versa,
 
-import { Children, CreateContext, useState } from "react";
+import { createContext, useState } from "react";
 
-export const AuthContext = CreateContext({
+export const AuthContext = createContext({
   token: "", // this is the token that will be used to authenticate the user, it's gotten from the Firebase Authentication service when the user is created or logged in
   isAuthenticated: false, // this helper variable is used to check if the user is logged in or not, which is set to false by default
   authenticate: (token) => {}, // this is a method for chaning the state, which triggers when a user is authenticated, it will set the token and isAuthenticated to true
@@ -29,7 +29,7 @@ function AuthContextProvider({ children }) {
     authenticate: authenticate, // this is the method for chaning the state, which triggers when a user is authenticated
     logout: logout, // this is the method for logging out the user
   };
-  return <AuthContextProvider value={value}>{Children}</AuthContextProvider>;
+  return <AuthContextProvider value={value}>{children}</AuthContextProvider>;
 }
 
 export default AuthContextProvider;
