@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Alert } from "react-native";
 import { AuthContext } from "../store/auth-context";
 import AuthContent from "../components/Auth/AuthContent";

@@ -29,7 +29,7 @@ function AuthContextProvider({ children }) {
     authenticate: authenticate, // this is the method for chaning the state, which triggers when a user is authenticated
     logout: logout, // this is the method for logging out the user
   };
-  return <AuthContextProvider value={value}>{children}</AuthContextProvider>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export default AuthContextProvider;
