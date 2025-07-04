@@ -8,14 +8,10 @@ function WelcomeScreen() {
   const [fetchedMessage, setFetchedMessage] = useState("");
 
   useEffect(() => {
-    axios
-      .get(
-        "https://expensetracker-ebaa0-default-rtdb.firebaseio.com/message.json"
-      )
-      .then((response) => {
-        console.log(response.data);
-        // setFetchedMessage(response.data);
-      });
+    axios.get(
+      "https://expensetracker-ebaa0-default-rtdb.firebaseio.com/message.json"
+    ).then((response) => {
+      response.data});
   }, []);
   return (
     <View style={styles.rootContainer}>
