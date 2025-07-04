@@ -17,6 +17,7 @@ async function authenticate(mode, email, password) {
   const token = response.data.idToken; // this is the token that will be used to authenticate the user, it's gotten from the Firebase Authentication service when the user is created or logged in
   return token; // this will return the token to the caller of the function, which can be used to authenticate the user in the app
 }
+// NOTE: this is the API key for Firebase Authentication, which is used to authenticate requests to the Firebase Authentication service, plays other role than authenticating the user, it can also be used to access protected resources we might have in our app(backend), say for only authenticated users,
 
 // This is the API key for Firebase Authentication, which is used to authenticate requests to the Firebase Authentication service.
 // when we trigger the createUser fucntion, it will send a post request to FB automatically a promise comes in and we make our post request an async fucntion and extracts its response using await and then we can use the response to do whatever we want with it, like storing the user in the database or logging them in.
