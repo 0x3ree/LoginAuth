@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 function WelcomeScreen() {
   // in here we are going to use the token gotten fire firebase to access a protected resouce which loads on the welcome screen for authenticated user
-  // rather than async we use the goodold fashion way .then() a promise, to fetch the data from the firebase realtime database
+  // rather than async we use the good old  way .then() a promise, to fetch the data from the firebase realtime database
   const [fetchedMessage, setFetchedMessage] = useState("");
 
   useEffect(() => {
