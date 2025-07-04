@@ -11,7 +11,7 @@ function WelcomeScreen() {
     axios.get(
       "https://expensetracker-ebaa0-default-rtdb.firebaseio.com/message.json"
     ).then((response) => {
-      response.data});
+      setFetchedMessage(response.data)});
   }, []);
   return (
     <View style={styles.rootContainer}>
