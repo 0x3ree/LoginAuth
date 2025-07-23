@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "AIzaSyAAuSEIF0ILOmbX0ViqYuqCv-km_nHgSLA"; // this is our web api key for Firebase Authentication which stored in the const.
+const API_KEY = "AIzaSyDCkoOMFC9-6hQf6xzdfJWJUpQU5wHM5HI"; // this is our web api key for Firebase Authentication which stored in the const.
 
 // due to the similarities between the signup and sign in end point we'd save most of the part in a const and then create diff functions for where they differ in url
 // the MODE(signIN or signUP))
